@@ -1,4 +1,4 @@
-# cpp_data_n_algos
+# C++ Data Structures and Algorithms
 Data structures and algorithms implemented in C++ ...to the best of my ability.
 
 I'm working my way through implementing all the most common data structures and algorithms.
