@@ -4,8 +4,8 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp \
-        sort_funcs.cpp
+        algorithms.cpp \
+        main.cpp
 
 HEADERS += \
-    sorts.h
+    algorithms.h

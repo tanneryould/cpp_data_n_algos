@@ -1,10 +1,16 @@
-#include "sorts.h"
+#include "algorithms.h"
 #include <vector>
-#include <iostream>
+#include <string>
+#include <chrono>
+#include <ctime>
 
 using namespace std;
+using namespace std::chrono;
+using Clock = std::chrono::high_resolution_clock;
 
-vector<int> create_random_vector(int length, int max) {
+vector<int> Utilities::create_random_vector(int length, int max) {
+
+    srand (time(NULL)); // We want a new set of random numbers each time, for testing.
     vector<int> vect;
     for (int i = 0; i < length; i++){
         vect.push_back(rand() % max);
@@ -12,7 +18,18 @@ vector<int> create_random_vector(int length, int max) {
     return vect;
 }
 
-vector<int> bubble_sort(vector<int> array) {
+void Utilities::start(string name="Function") {
+    cout << "Starting " << name << endl;
+    timestamp = Clock::now().time_since_epoch().count();
+
+}
+void Utilities::stop() {
+    auto stop = Clock::now().time_since_epoch().count();
+    auto duration = stop - timestamp;
+cout << "Bubble sort completed in: " << duration.count() << " milliseconds." << endl;
+}
+
+vector<int> Sorts::bubble_sort(vector<int> array) {
     bool sorted = false;
     int size = array.size();
     int temp;
@@ -26,15 +43,16 @@ vector<int> bubble_sort(vector<int> array) {
                 array[i+1] = temp;
             }
         }
-        size--; /* When we push the highest number to the end of the vector we no longer need to search there.
-                 * So really I suppose the time-complexity is O(n^2 - n), but at significantly large data sets
-                 * that one less n doesn't really matter does it? (n = 1000, 1000000 vs 909000).*/
+        size--;
+        /* When we push the highest number to the end of the vector we no longer need to search there.
+         * So really I suppose this makes the time-complexity O(n^2 - n), but at significantly large data sets
+         * that one less n doesn't really matter does it? (n = 1000, 1,000,000 vs 909,000).*/
     }
     return array;
     // Clean, simple, horribly inefficient :)
 }
 
-vector<int> quick_sort(vector<int> array) {
+vector<int> Sorts::quick_sort(vector<int> array) {
     int len = array.size();
     if (len <= 1) {
         return array;
@@ -68,4 +86,28 @@ vector<int> quick_sort(vector<int> array) {
      * return quicksort(left) + mid + quicksort(right);*/
     return left;
 
+}
+
+int Searches::linear_search(int item, vector<int> array) {
+    int s = array.size(); // For whatever reason I was getting a compiler warning about comparing i and array.size()? This fixes it.
+    for (int i = 0; i < s; i++) {
+        if (item == array[i]) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int Searches::binary_search(int item, int left, int right, vector<int> array) {
+    if (left >= right) {
+        return -1;
+    }
+    int mid = (left + right)/2;
+    if (array[mid] == item){
+        return mid;
+    } else if (array[mid] > item) {
+        return binary_search(item, mid, right, array);
+    } else {
+        return binary_search(item, left, mid, array);
+    }
 }
