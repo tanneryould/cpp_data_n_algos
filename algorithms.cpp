@@ -18,17 +18,6 @@ vector<int> Utilities::create_random_vector(int length, int max) {
     return vect;
 }
 
-void Utilities::start(string name="Function") {
-    cout << "Starting " << name << endl;
-    timestamp = Clock::now().time_since_epoch().count();
-
-}
-void Utilities::stop() {
-    auto stop = Clock::now().time_since_epoch().count();
-    auto duration = stop - timestamp;
-cout << "Bubble sort completed in: " << duration.count() << " milliseconds." << endl;
-}
-
 vector<int> Sorts::bubble_sort(vector<int> array) {
     bool sorted = false;
     int size = array.size();
@@ -98,16 +87,16 @@ int Searches::linear_search(int item, vector<int> array) {
     return -1;
 }
 
-int Searches::binary_search(int item, int left, int right, vector<int> array) {
-    if (left >= right) {
+int Searches::binary_search(int item, vector<int> array, int left, int right) {
+    if (left > right) {
         return -1;
     }
     int mid = (left + right)/2;
     if (array[mid] == item){
         return mid;
-    } else if (array[mid] > item) {
-        return binary_search(item, mid, right, array);
+    } else if (array[mid] < item) {
+        return binary_search(item, array, mid+1, right);
     } else {
-        return binary_search(item, left, mid, array);
+        return binary_search(item, array, left, mid-1);
     }
 }

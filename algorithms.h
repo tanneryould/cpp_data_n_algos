@@ -27,7 +27,7 @@ class Sorts {
 class Searches {
     public:
         int linear_search(int item, vector<int> list);
-        int binary_search(int item, int left, int right, vector<int> list);
+        int binary_search(int item, vector<int> array, int left, int right);
 };
 
 #endif // ALGORITHMS_H

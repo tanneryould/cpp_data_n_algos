@@ -6,6 +6,7 @@
 
 using namespace std;
 using namespace std::chrono;
+using Clock = high_resolution_clock;
 
 /* Alright, here we compare the actual runtimes of different sorting algorithms.
  * The list remains unchanged throughout the runs because the values are passed,
@@ -17,35 +18,50 @@ using namespace std::chrono;
  * sure that they worked as intended. Everything seems fine so far!
  */
 
-void sort_functions(vector<int> list) {
+vector<int> sort_functions(vector<int> list) {
 
     Sorts demo;
 
     cout << "Starting Bubble Sort O(n^2)." << endl;
-        auto start = high_resolution_clock::now();
+        auto start = Clock::now();
             vector<int> bubble = demo.bubble_sort(list);
-        auto stop = high_resolution_clock::now();
+        auto stop = Clock::now();
         auto duration = duration_cast<milliseconds>(stop - start);
     cout << "Bubble sort completed in: " << duration.count() << " milliseconds." << endl;
 
     cout << "Quick Sort O(n log(n))." << endl;
-        start = high_resolution_clock::now();
+        start = Clock::now();
             vector<int> quick = demo.quick_sort(list);
-        stop = high_resolution_clock::now();
+        stop = Clock::now();
         duration = duration_cast<milliseconds>(stop - start);
     cout << "Quick sort completed in: " << duration.count() << " milliseconds." << endl;
+    return quick;
+}
+
+void binary_search_with_timer(int target, vector<int> list) {
+
+    Searches demo;
+
+    cout << "Binary Search" << endl;
+        auto start = Clock::now();
+            int idx = demo.binary_search(target, list, 0, list.size());
+        auto stop = Clock::now();
+        auto duration = duration_cast<milliseconds>(stop - start);
+    cout << "Found: " << target << " at index: " << idx << " in " << duration.count() << " milliseconds." << endl;
+
 }
 
 int main() {
 
-    int length = 10000;
+    int length = 100000;
     int max = 1000;
 
     Utilities utilitiy;
     vector<int> list = utilitiy.create_random_vector(length, max);
+    int r = 900;
 
-
-    sort_functions(list);
+    vector<int> sorted_list = sort_functions(list);
+    binary_search_with_timer(r, sorted_list);
 
     return 1; // Ok c++, whatever you want.
 
