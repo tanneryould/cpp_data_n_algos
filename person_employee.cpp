@@ -111,8 +111,9 @@ int main()
   This didn't work because employee was declared as Person.
   After some tests, I noticed that using type Person* employee = new Employee(); doesn't cause a compiler error as long as
   we don't try to set an employeeId, and print() will just run the function in the Person class.
-  So what exactly is new Employee()? Space allocated for that particular class? I tried to get the memory locations in the
-  debugger but was unsuccessful for the 2 minutes that I spent trying. I'll look into this later.
+  So what exactly is new Employee()? Are we just calling the constructor there, and because Person and Employee both have
+  empty constructors, they don't cause a compiler error? But if we try Employee* employee = new Person(); we get an error.
+  I need to look into this more.
   */
   Employee* employee = new Employee();
   /*
