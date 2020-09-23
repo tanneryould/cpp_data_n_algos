@@ -42,7 +42,8 @@ public:
   }
 
   ~Person() = default; // Destructor
-  /*A destructor is a special member function that is called when the
+  /*
+  A destructor is a special member function that is called when the
   lifetime of an object ends. The purpose of the destructor is to free
   the resources that the object may have acquired during its lifetime.
 
@@ -60,11 +61,12 @@ public:
   // we don't need them until the print() function is actually called.
   int m_age;
   std::string m_name;
-  /* I probably would have done just age and name instead of m_age and m_name to be clearer. Is there a
-     reason for the 'm's? Also would we want to define these as consts? If this were some sort of database
-     probably not, because what if the user changes their name? Oh and their age will certainly increase. 
-     EDIT: No of course we wouldn't define them as consts because consts need to be initialized with a value!
-     */
+  /*
+  I probably would have done just age and name instead of m_age and m_name to be clearer. Is there a
+  reason for the 'm's? Also would we want to define these as consts? If this were some sort of database
+  probably not, because what if the user changes their name? Oh and their age will certainly increase. 
+  EDIT: No of course we wouldn't define them as consts because consts need have a value at compiling time!
+  */
 };
 
 class Employee : public Person
@@ -102,32 +104,36 @@ int main()
   Also strings can't be given the constexpr declaration and must use const for reasons that I don't yet understand.
   */
 
-  /*Previously:
+  /*
+  Previously:
   Person* employee = new Employee();
 
-  Didn't work because employee was declared as Person.
+  This didn't work because employee was declared as Person.
   After some tests, I noticed that using type Person* employee = new Employee(); doesn't cause a compiler error as long as
   we don't try to set an employeeId, and print() will just run the function in the Person class.
   So what exactly is new Employee()? Space allocated for that particular class? I tried to get the memory locations in the
   debugger but was unsuccessful for the 2 minutes that I spent trying. I'll look into this later.
   */
   Employee* employee = new Employee();
-    /* new Employee works with or without a trailing ()
-     This probably would not work without the () if there was a constructor
-     that asked for parameters */
+  /*
+  new Employee works with or without a trailing ()
+   This probably would not work without the () if there was a constructor
+   that asked for parameters */
 
-    /* Also why pointers over just objects?
-    It seems as though objects are given automatic storage duration and will be
-    destroyed after we go out of scope whereas pointers need to be explicitly
-    created and destroyed.
-    Why use a pointer here over an object? Just to test syntax?
-    Are there other reasons beyond memory management?
+  /*
+  Also why pointers over just objects?
+  It seems as though objects are given automatic storage duration and will be
+  destroyed after we go out of scope whereas pointers need to be explicitly
+  created and destroyed.
+  Why use a pointer here over an object? Just to test syntax?
+  Are there other reasons beyond memory management?
 
-    Also what about other types of pointers (unique, smart, etc)? People seem to discourage using
-    raw pointers. https://stackoverflow.com/questions/22146094/why-should-i-use-a-pointer-rather-than-the-object-itself
-    */
+  Also what about other types of pointers (unique, smart, etc)? People seem to discourage using
+  raw pointers. https://stackoverflow.com/questions/22146094/why-should-i-use-a-pointer-rather-than-the-object-itself
+  */
 
-  /* Previously:
+  /*
+  Previously:
   employee.name = name;
   employee.age = age;
   employee.employeeId = employeeId;
@@ -142,12 +148,14 @@ int main()
   To the best of my knowledge, this dot notation would have worked if we hadn't
   used a pointer in our instantiation of employee.
   (ie Employee employee;)
-
   */
 
-  /* Regarding below. Would it be better for the overall app size if we defined these in
-     the constructor rather than defining variables and then setting them
-     to the object's member variables? Is this where pointers come in handy? */
+  /* 
+  Regarding below. Would it be better for the overall app size if we defined these in
+  the constructor rather than defining variables and then passing their values
+  to the object's member variables? Is this where pointers come in handy, by setting the variable
+  once and then pointing to it from the class?
+  */
   employee->m_name = name;
   employee->m_age = age;
   employee->m_employeeId = employeeId;
