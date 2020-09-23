@@ -76,7 +76,7 @@ public:
   {
   }
 
-  ~Employee() = default; // Hey, this is called when we run delete pointer. Neat!
+  ~Employee() = default; // Hey, this is called when we run delete pointer. Neat! (and the same goes for the other destructor)
 
   void print() // Turns out you can have the same function name in a child class.
   {
