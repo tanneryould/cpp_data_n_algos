@@ -22,11 +22,12 @@
 // using namespace std;
 /*
 I decided to comment this out because I've read that "using namespace std" may not be a best practice.
-I read one article somewhere that said something about loading in a bunch of functionality that will
+I read one article somewhere that said something about doing this loads in a bunch of functionality that will
 just bloat the program but the main concern seems to be the posibility of conflicting namespaces.
 
-After doing a small amount of research "using namespace std" can cause conflicts.
-From what I understand, say we have std::string and foo::string, if we went on to declare a string, it would
+After doing a small amount of research, I have found that "using namespace std" can cause conflicts.
+From what I understand, say we have namespace std and namespace foo. If the both have a string
+sort of type like std::string and foo::string, if we went on to declare a string after declaring the namespaces, it would
 use foo::string and not std::string. Better to be explict I suppose - easier for bug fixing.
 source: https://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice
 
@@ -46,6 +47,8 @@ public:
   the resources that the object may have acquired during its lifetime.
 
   https://en.cppreference.com/w/cpp/language/destructor
+  
+  So this is run when we move out of the scope of an object or delete a pointer, yes?
   */
 
   void print()
@@ -95,31 +98,31 @@ int main()
 
   C++ Primer, Fifth Edition, page 102-103
 
-  Also strings can't be given the constexpr declaration for reasons that I don't yet understand.
+  Also strings can't be given the constexpr declaration and must use const for reasons that I don't yet understand.
   */
 
   /*Previously:
   Person* employee = new Employee();
 
   Didn't work because employee was declared as Person.
-  After some tests, I noticed that using type Person doesn't cause a compiler error as long as
-  we don't try to set an employeeId and print() will just run the function in the Person class.
-  So what exactly is new Employee()? Space allocated for that particular class?
+  After some tests, I noticed that using type Person* employee = new Employee(); doesn't cause a compiler error as long as
+  we don't try to set an employeeId, and print() will just run the function in the Person class.
+  So what exactly is new Employee()? Space allocated for that particular class? I tried to get the memory locations in the
+  debugger but was unsuccessful for the 2 minutes that I spent trying. I'll look into this later.
   */
   Employee* employee = new Employee();
     /* new Employee works with or without a trailing ()
-     This probably would work if there was a constructor
+     This probably would not work without the () if there was a constructor
      that asked for parameters */
 
     /* Also why pointers over just objects?
     It seems as though objects are given automatic storage duration and will be
     destroyed after we go out of scope whereas pointers need to be explicitly
     created and destroyed.
-    So why use a pointer here over an object? Just to test syntax?
-    */
+    Why use a pointer here over an object? Just to test syntax?
+    Are there other reasons beyond memory management?
 
-    /*
-    Also what of other types of pointers (unique, smart, etc)? People seem to discourage using
+    Also what about other types of pointers (unique, smart, etc)? People seem to discourage using
     raw pointers. https://stackoverflow.com/questions/22146094/why-should-i-use-a-pointer-rather-than-the-object-itself
     */
 
@@ -135,7 +138,7 @@ int main()
 
   Also because it should be "m_name" etc that we're assigning.
 
-  To the best of my knowledge, this would have worked if we hadn't
+  To the best of my knowledge, this dot notation would have worked if we hadn't
   used a pointer in our instantiation of employee.
   (ie Employee employee;)
 
