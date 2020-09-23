@@ -163,10 +163,12 @@ int main()
   employee->print();
 
   delete employee;
-  /* I need to study "delete" more but from what I understand, it can free up the
-     memory that the pointer... points to and allow other variables to occupy it?
-     I know that if we don't, the object will be persistant even outside current scope.
-    */
+  /*
+  I need to study "delete" more but from what I understand, it can free up the
+  memory that the pointer... points to and allow other variables to occupy it?
+  I know that if we don't, whatever's at that memory location will be persistant 
+  even outside current scope.
+  */
 
   return 0;
 }
