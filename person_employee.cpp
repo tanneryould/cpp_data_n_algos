@@ -67,12 +67,14 @@ public:
     std::cout << "name: " << m_name << std::endl;
     std::cout << "age: "  << m_age  << std::endl;
   }
-  // We can instantiate these variables after the print() function because
-  // we don't need them until the print() function is actually called.
-  // Guillaume: the order of the declarations is not really important. But:
-  // - the definition of the function should be in a source file.
-  // - the member variables should be private. See "encapsulation" concept in C++Primer, chap 7.2.
-  // - the primitive types (int, float, etc) are not default initialized in C++ (random value). Default initialize them. See C++ Primer, chap 7.1.2.
+  /*
+  We can instantiate these variables after the print() function because
+  we don't need them until the print() function is actually called.
+  Guillaume: the order of the declarations is not really important. But:
+   - the definition of the function should be in a source file.
+   - the member variables should be private. See "encapsulation" concept in C++Primer, chap 7.2.
+   - the primitive types (int, float, etc) are not default initialized in C++ (random value). Default initialize them. See C++ Primer, chap 7.1.2.
+   */
   int m_age;
   std::string m_name;
   /*
