@@ -62,7 +62,9 @@ public:
   std::string m_name;
   /* I probably would have done just age and name instead of m_age and m_name to be clearer. Is there a
      reason for the 'm's? Also would we want to define these as consts? If this were some sort of database
-     probably not, because what if the user changes their name? Oh and their age will certainly increase. */
+     probably not, because what if the user changes their name? Oh and their age will certainly increase. 
+     EDIT: No of course we wouldn't define them as consts because consts need to be initialized with a value!
+     */
 };
 
 class Employee : public Person
