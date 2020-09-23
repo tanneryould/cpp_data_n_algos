@@ -26,8 +26,8 @@ I read one article somewhere that said something about doing this loads in a bun
 just bloat the program but the main concern seems to be the posibility of conflicting namespaces.
 
 After doing a small amount of research, I have found that "using namespace std" can cause conflicts.
-From what I understand, say we have namespace std and namespace foo. If the both have a string
-sort of type like std::string and foo::string, if we went on to declare a string after declaring the namespaces, it would
+From what I understand, say we have namespace std and namespace foo. If they both have a string type
+sort of like std::string and foo::string and we went on to declare a string after declaring the namespaces, it would
 use foo::string and not std::string. Better to be explict I suppose - easier for bug fixing.
 source: https://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice
 
@@ -93,10 +93,9 @@ int main()
   A constant expression is an expression whose value cannot
   change and that can be evaluated at compile time. A literal is a
   constant expression. A const object that is initialized from a constant
-  expression is also a constant expression. As we’ll see, there are several
-  contexts in the language that require constant expressions.
+  expression is also a constant expression.
 
-  C++ Primer, Fifth Edition, page 102-103
+  C++ Primer, Fifth Edition, page 102
 
   Also strings can't be given the constexpr declaration and must use const for reasons that I don't yet understand.
   */
