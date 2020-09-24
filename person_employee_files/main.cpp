@@ -3,7 +3,7 @@
 #include <string>
 
 int main() {
-    Employee* employee = new Employee("Bob", 50, 175);
+    Pointer* employee = new Employee("Bob", 50, 175);
 
     employee->print();
 
