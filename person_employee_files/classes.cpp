@@ -1,8 +1,17 @@
+/* When I was initially learning C++, I saw that we should break class member function definitions
+into a separate file such as this.*/
+
 #include "classes.h"
 #include <iostream>
 
 void Person::set_age(int age) {
-    m_age = age;
+    // Quick demo test to ensure we are setting age properly.
+    // We could probably augment this with try/catch (or C++'s equivalent)
+    if (age < 0) {
+        std::cout << "Age cannot be negative.\n";
+    } else {
+        m_age = age;
+    }
 }
 
 int Person::get_age() {
