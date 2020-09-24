@@ -32,3 +32,12 @@ public:
 };
 
 #endif // CLASSES_H
+
+/*
+Regarding get() and set() methods.
+I've seen that done in Javascript so that variables are properly handled when changing their values.
+Then again, in JS you can overwrite an int with a string.
+Is this the correct way to do it in C++? I'm sure if we had some more complicated variables, we
+could implement some testing on the parameters before allowing them to actually set the value. Like
+not allowing negative numbers for an age.
+*/
