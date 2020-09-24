@@ -5,8 +5,6 @@
 #include <ctime>
 
 using namespace std;
-using namespace std::chrono;
-using Clock = std::chrono::high_resolution_clock;
 
 vector<int> Utilities::create_random_vector(int length, int max) {
 

@@ -8,17 +8,19 @@ using namespace std;
 using namespace std::chrono;
 using Clock = high_resolution_clock;
 
-/* Alright, here we compare the actual runtimes of different sorting algorithms.
- * The list remains unchanged throughout the runs because the values are passed,
- * not the actual reference. There's probably some memory management issues.
- * I of course want to add more as I have more time to practice.
- *
- * Also I don't return the functions as void, because I want to have the _option_
- * to cout them. I can also check their values at the end of the run -- just to make
- * sure that they worked as intended. Everything seems fine so far!
- */
+
 
 vector<int> sort_functions(vector<int> list) {
+
+    /* Alright, here we compare the actual runtimes of different sorting algorithms.
+     * The list remains unchanged throughout the runs because the values are passed,
+     * not the actual reference. There's probably some memory management issues.
+     * I of course want to add more as I have more time to practice.
+     *
+     * Also I don't return the functions as void, because I want to have the _option_
+     * to cout them. I can also check their values at the end of the run -- just to make
+     * sure that they worked as intended. Everything seems fine so far!
+     */
 
     Sorts demo;
 
