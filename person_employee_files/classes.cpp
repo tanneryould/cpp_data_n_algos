@@ -18,8 +18,8 @@ std::string Person::get_name() {
 }
 
 void Person::print() {
-    std::cout << m_name;
-    std::cout << m_age;
+    std::cout << m_name << std::endl;
+    std::cout << m_age << std::endl;
 }
 
 Employee::Employee(std::string name, int age, int employee_id) {
